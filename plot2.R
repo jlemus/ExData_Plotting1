@@ -16,11 +16,20 @@ close(con)
 
 con2 <- file("/Users/TaxiMagic/Courses/exploratory data analysis/course project 1/data/household_power_consumption.txt")
 open(con2)
-        
+
 names <- read.table(con2, sep = ";", header = TRUE, nrows = 1)
 names <- colnames(names)
 colnames(data) <- names
 
-hist(data$Global_active_power, xlab = "Global Active Power (kilowatts)", 
-     col = "red", main = "Global Active Power")
+data$Date <- as.Date(data$Date, "%d/%m/%Y")
 
+datetime <- paste(data$Date, data$Time, sep = " ")
+
+datetime <- strptime(datetime, "%Y-%m-%d %H:%M:%S")
+
+weekdays <- weekdays(datetime)
+
+dataplot2 <- data.frame(datetime, weekdays, data$Global_active_power)
+
+with(dataplot2, plot(datetime, data.Global_active_power, type = "o", 
+                     ylab = "Global Active Power (kilowatts)", pch = ""))
