@@ -1,5 +1,3 @@
-dev.off()
-
 Date1 <- strptime("2006/12/16 17:24:00", "%Y/%m/%d %H:%M:%S")
 Date2 <- strptime("2007/02/01 00:00:00", "%Y/%m/%d %H:%M:%S")
 
@@ -25,4 +23,7 @@ colnames(data) <- names
 
 hist(data$Global_active_power, xlab = "Global Active Power (kilowatts)", 
      col = "red", main = "Global Active Power")
+
+dev.copy(png, file = "plot1.png")
+dev.off()
 
