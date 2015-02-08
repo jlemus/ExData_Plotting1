@@ -1,3 +1,5 @@
+dev.off()
+
 Date1 <- strptime("2006/12/16 17:24:00", "%Y/%m/%d %H:%M:%S")
 Date2 <- strptime("2007/02/01 00:00:00", "%Y/%m/%d %H:%M:%S")
 
@@ -31,8 +33,6 @@ weekdays <- weekdays(datetime)
 
 par(mfrow = c(2, 2))
 
-
-
 dataplot4 <- data.frame(datetime, weekdays, data)
 
 with(dataplot4, {
@@ -41,12 +41,23 @@ with(dataplot4, {
         
         plot(datetime, Voltage, type = "o", 
              ylab = "Voltage", pch = "")
+        
+        plot(datetime, Sub_metering_1, type = "o", 
+             ylab = "Energy sub metering", pch = "", xlab = "")
+        
+        points(datetime, Sub_metering_2, type = "o", pch = "", col = "red")
+        
+        points(datetime, Sub_metering_3, type = "o", pch = "", col = "blue")
+        legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), pch = "____", col = c("black", "blue", "red"))
+        
+        plot(datetime, Global_reactive_power, type = "o", 
+             ylab = "Global_reactive_power", pch = "")
         })
 
-points(dataplot3$datetime, dataplot3$data.Sub_metering_2, type = "o", 
-       ylab = "Global Active Power (kilowatts)", pch = "", col = "red")
+#points(dataplot3$datetime, dataplot3$data.Sub_metering_2, type = "o", 
+  #     ylab = "Global Active Power (kilowatts)", pch = "", col = "red")
 
-points(dataplot3$datetime, dataplot3$data.Sub_metering_3, type = "o", 
-       ylab = "Global Active Power (kilowatts)", pch = "", col = "blue")
+#points(dataplot3$datetime, dataplot3$data.Sub_metering_3, type = "o", 
+#       ylab = "Global Active Power (kilowatts)", pch = "", col = "blue")
 
-legend(dataplot3$datetime, y = c(dataplot3$data.Sub_metering_1, dataplot3$data.Sub_metering_2, dataplot3$data.Sub_metering_3))
+#legend(dataplot3$datetime, y = c(dataplot3$data.Sub_metering_1, dataplot3$data.Sub_metering_2, dataplot3$data.Sub_metering_3))
